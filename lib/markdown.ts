@@ -162,11 +162,14 @@ export async function getTable(
 }
 
 function innerslug(text: string) {
+  /* github-sluggerと同じロジックを使用 */
   return text
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-zA-Z0-9\u4e00-\u9fa5\-_]/g, "")
+    .replace(/[\s]+/g, "-") // スペースをハイフンに
+    .replace(/[^\p{L}\p{N}\-_]/gu, "") // 文字、数字、ハイフン、アンダースコア以外を削除（Unicodeサポート）
+    .replace(/^-+|-+$/g, "") // 先頭と末尾のハイフンを削除
+    .replace(/-{2,}/g, "-") // 連続するハイフンを1つに
 }
 
 const pathIndexMap = new Map(
