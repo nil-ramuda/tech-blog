@@ -53,17 +53,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="h-full overflow-hidden">
       {Settings.gtmconnected && <GoogleTagManager gtmId={Settings.gtm} />}
-      <body
-        className={`${inter.variable} font-regular flex h-screen flex-col overflow-hidden`}
-      >
+      <body className={`${inter.variable} font-regular h-full overflow-hidden`}>
         <Providers>
-          <Navbar />
-          <main className="flex-1 overflow-hidden px-5 sm:px-8">
-            {children}
-          </main>
-          <Footer />
+          <div className="flex h-full flex-col">
+            <Navbar />
+            <main className="flex-1 overflow-auto px-5 sm:px-8">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

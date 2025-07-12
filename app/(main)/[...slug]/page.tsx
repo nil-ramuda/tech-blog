@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { getDocument } from "@/lib/markdown"
 import { Settings } from "@/lib/meta"
 import { PageRoutes } from "@/lib/pageroutes"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Typography } from "@/components/ui/typography"
 import { BackToTop } from "@/components/navigation/backtotop"
@@ -25,27 +26,25 @@ export default async function Pages({ params }: PageProps) {
   const { frontmatter, content, tocs } = res
 
   return (
-    <>
-      <div className="flex items-start gap-14">
-        <section className="flex-[3]">
-          <PageBreadcrumb paths={slug} />
+    <div className="flex items-start gap-14">
+      <section className="flex-[3] pr-4">
+        <PageBreadcrumb paths={slug} />
 
-          <Typography>
-            <h1 className="!mb-2 text-3xl !font-semibold">
-              {frontmatter.title}
-            </h1>
-            <p className="-mt-4 text-sm">{frontmatter.description}</p>
-            <Separator className="my-6" />
-            <section>{content}</section>
-            <Pagination pathname={pathName} />
-          </Typography>
-        </section>
+        <Typography>
+          <h1 className="!mb-2 text-3xl !font-semibold">{frontmatter.title}</h1>
+          <p className="-mt-4 text-sm">{frontmatter.description}</p>
+          <Separator className="my-6" />
+          <section>{content}</section>
+          <Pagination pathname={pathName} />
+        </Typography>
+      </section>
 
-        {Settings.rightbar && (
-          <aside
-            className="toc sticky top-16 hidden h-[94.5vh] min-w-[230px] gap-3 py-8 xl:flex xl:flex-col"
-            aria-label="Table of contents"
-          >
+      {Settings.rightbar && (
+        <aside
+          className="toc sticky top-0 hidden h-full min-w-[230px] gap-3 py-8 xl:flex xl:flex-col"
+          aria-label="Table of contents"
+        >
+          <ScrollArea className="h-full">
             {Settings.toc && <Toc tocs={tocs} />}
             {Settings.feedback && (
               <Feedback slug={pathName} title={frontmatter.title} />
@@ -53,10 +52,10 @@ export default async function Pages({ params }: PageProps) {
             {Settings.totop && (
               <BackToTop className="mt-6 self-start text-sm text-neutral-800 dark:text-neutral-300/85" />
             )}
-          </aside>
-        )}
-      </div>
-    </>
+          </ScrollArea>
+        </aside>
+      )}
+    </div>
   )
 }
 
