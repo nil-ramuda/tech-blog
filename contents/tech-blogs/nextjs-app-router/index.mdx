@@ -1,0 +1,76 @@
+---
+title: Next.js App Routerの基本的な使い方
+description: Next.js 13から導入されたApp Routerの基本的な使い方と、Pages Routerとの違いについて解説します
+keywords: Next.js, App Router, React, TypeScript
+tags: ["Next.js", "React", "TypeScript"]
+---
+
+## はじめに
+
+Next.js 13から導入されたApp Routerは、React Server ComponentsやStreamingなど、最新のReact機能を活用できる新しいルーティングシステムです。
+
+## App Routerの特徴
+
+### 1. ファイルベースルーティング
+
+App Routerでは、`app`ディレクトリ内のフォルダ構造がそのままURLパスになります。
+
+```
+app/
+├── page.tsx          → /
+├── about/
+│   └── page.tsx      → /about
+└── blog/
+    └── [slug]/
+        └── page.tsx  → /blog/:slug
+```
+
+### 2. Server Components by Default
+
+App Routerでは、デフォルトでServer Componentsとして動作します。クライアントサイドでの実行が必要な場合は、`"use client"`ディレクティブを使用します。
+
+```tsx
+// Server Component（デフォルト）
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data')
+  return <div>{/* ... */}</div>
+}
+```
+
+```tsx
+// Client Component
+"use client"
+
+import { useState } from 'react'
+
+export default function InteractiveComponent() {
+  const [count, setCount] = useState(0)
+  return <button onClick={() => setCount(count + 1)}>{count}</button>
+}
+```
+
+### 3. レイアウトの共有
+
+`layout.tsx`ファイルを使用して、複数のページで共通のレイアウトを定義できます。
+
+```tsx
+// app/layout.tsx
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="ja">
+      <body>
+        <nav>{/* ナビゲーション */}</nav>
+        <main>{children}</main>
+      </body>
+    </html>
+  )
+}
+```
+
+## まとめ
+
+App Routerは、より直感的で強力なルーティングシステムを提供します。Server Componentsを活用することで、パフォーマンスの向上も期待できます。

@@ -32,9 +32,9 @@ export default function Toc({ tocs }: TocProps) {
       <h3 className="text-sm font-semibold">On this page</h3>
       <ScrollArea className="pt-0.5 pb-4">
         <div className="flex flex-col gap-2.5 text-sm text-neutral-800 dark:text-neutral-300/85">
-          {tocs.map(({ href, level, text }) => (
+          {tocs.map(({ href, level, text }, index) => (
             <Link
-              key={href}
+              key={`${href}-${index}`}
               href={href}
               scroll={false}
               onClick={(e) => handleSmoothScroll(e, href)}

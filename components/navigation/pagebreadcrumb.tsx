@@ -28,9 +28,7 @@ export default function PageBreadcrumb({ paths }: { paths: string[] }) {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={`/docs/${paths[0]}`}>
-                    {toTitleCase(paths[0])}
-                  </Link>
+                  <Link href={`/${paths[0]}`}>{toTitleCase(paths[0])}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
 
@@ -41,7 +39,7 @@ export default function PageBreadcrumb({ paths }: { paths: string[] }) {
 
               {paths.slice(-1).map((path, i) => {
                 const index = paths.length - 1 + i
-                const href = `/docs/${paths.slice(0, index + 1).join("/")}`
+                const href = `/${paths.slice(0, index + 1).join("/")}`
 
                 return (
                   <Fragment key={path}>
@@ -63,7 +61,7 @@ export default function PageBreadcrumb({ paths }: { paths: string[] }) {
             </>
           ) : (
             paths.map((path, index) => {
-              const href = `/docs/${paths.slice(0, index + 1).join("/")}`
+              const href = `/${paths.slice(0, index + 1).join("/")}`
 
               return (
                 <Fragment key={path}>

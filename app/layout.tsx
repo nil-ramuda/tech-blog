@@ -55,10 +55,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       {Settings.gtmconnected && <GoogleTagManager gtmId={Settings.gtm} />}
-      <body className={`${inter.variable} font-regular`}>
+      <body
+        className={`${inter.variable} font-regular flex h-screen flex-col overflow-hidden`}
+      >
         <Providers>
           <Navbar />
-          <main className="h-auto px-5 sm:px-8">{children}</main>
+          <main className="flex-1 overflow-hidden px-5 sm:px-8">
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>
