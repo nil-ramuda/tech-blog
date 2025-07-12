@@ -27,7 +27,7 @@ export default async function Pages({ params }: PageProps) {
   return (
     <>
       <div className="flex items-start gap-14">
-        <section className="flex-[3] border border-yellow-500">
+        <section className="flex-[3]">
           <PageBreadcrumb paths={slug} />
 
           <Typography>
@@ -43,7 +43,7 @@ export default async function Pages({ params }: PageProps) {
 
         {Settings.rightbar && (
           <aside
-            className="toc sticky top-16 hidden h-[94.5vh] min-w-[230px] gap-3 border border-blue-500 py-8 xl:flex xl:flex-col"
+            className="toc sticky top-16 hidden h-[94.5vh] min-w-[230px] gap-3 py-8 xl:flex xl:flex-col"
             aria-label="Table of contents"
           >
             {Settings.toc && <Toc tocs={tocs} />}
