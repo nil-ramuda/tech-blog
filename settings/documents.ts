@@ -8,15 +8,15 @@ export const Documents: Paths[] = [
     items: [
       {
         title: "Installation",
-        href: "/installation",
+        href: "/basic-setup/installation",
       },
       {
         title: "Setup",
-        href: "/setup",
+        href: "/basic-setup/setup",
       },
       {
         title: "Changelog",
-        href: "/changelog",
+        href: "/basic-setup/changelog",
       },
     ],
   },
@@ -34,15 +34,15 @@ export const Documents: Paths[] = [
     items: [
       {
         title: "Deep",
-        href: "/deep",
+        href: "/structure/deep",
         items: [
           {
             title: "Deeper",
-            href: "/deeper",
+            href: "/structure/deep/deeper",
             items: [
               {
                 title: "Even deeper",
-                href: "/even-deeper",
+                href: "/structure/deep/deeper/even-deeper",
               },
             ],
           },
@@ -60,40 +60,48 @@ export const Documents: Paths[] = [
     items: [
       {
         title: "Cards",
-        href: "/cards",
+        href: "/markdown/cards",
       },
       {
         title: "Diagrams",
-        href: "/diagrams",
+        href: "/markdown/diagrams",
       },
       {
         title: "Filetree",
-        href: "/filetree",
+        href: "/markdown/filetree",
       },
       {
         title: "Lists",
-        href: "/lists",
+        href: "/markdown/lists",
       },
       {
         title: "Maths",
-        href: "/maths",
+        href: "/markdown/maths",
       },
       {
         title: "Notes",
-        href: "/notes",
+        href: "/markdown/notes",
       },
       {
         title: "Steps",
-        href: "/steps",
+        href: "/markdown/steps",
       },
       {
         title: "Table",
-        href: "/table",
+        href: "/markdown/table",
       },
       {
         title: "Tabs",
-        href: "/tabs",
+        href: "/markdown/tabs",
       },
     ],
+  },
+  {
+    spacer: true,
+  },
+  {
+    heading: "技術ブログ",
+    title: "全ての記事",
+    href: "/tech-blogs",
   },
 ]

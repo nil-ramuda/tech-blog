@@ -27,6 +27,7 @@ type BaseMdxFrontmatter = {
   title: string
   description: string
   keywords: string
+  tags?: string[]
 }
 
 async function parseMdx<Frontmatter>(rawMdx: string) {
@@ -53,8 +54,8 @@ async function parseMdx<Frontmatter>(rawMdx: string) {
 
 const documentPath = (slug: string) => {
   return Settings.gitload
-    ? `${GitHubLink.href}/raw/main/contents/docs/${slug}/index.mdx`
-    : path.join(process.cwd(), "/contents/docs/", `${slug}/index.mdx`)
+    ? `${GitHubLink.href}/raw/main/contents/${slug}/index.mdx`
+    : path.join(process.cwd(), "/contents/", `${slug}/index.mdx`)
 }
 
 const getDocumentPath = (() => {
@@ -116,7 +117,7 @@ export async function getTable(
   let rawMdx = ""
 
   if (Settings.gitload) {
-    const contentPath = `${GitHubLink.href}/raw/main/contents/docs/${slug}/index.mdx`
+    const contentPath = `${GitHubLink.href}/raw/main/contents/${slug}/index.mdx`
     try {
       const response = await fetch(contentPath)
       if (!response.ok) {
@@ -132,7 +133,7 @@ export async function getTable(
   } else {
     const contentPath = path.join(
       process.cwd(),
-      "/contents/docs/",
+      "/contents/",
       `${slug}/index.mdx`
     )
     try {

@@ -1,14 +1,9 @@
 "use client"
 
-import { usePathname } from "next/navigation"
-
 import { Routes } from "@/lib/pageroutes"
 import SubLink from "@/components/navigation/sublink"
 
 export default function PageMenu({ isSheet = false }) {
-  const pathname = usePathname()
-  if (!pathname.startsWith("/docs")) return null
-
   return (
     <div className="mt-5 flex flex-col gap-3.5 pb-6">
       {Routes.map((item, index) => {
@@ -27,7 +22,7 @@ export default function PageMenu({ isSheet = false }) {
             <SubLink
               {...{
                 ...item,
-                href: `/docs${item.href}`,
+                href: item.href,
                 level: 0,
                 isSheet,
               }}

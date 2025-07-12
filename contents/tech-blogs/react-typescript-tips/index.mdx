@@ -1,0 +1,86 @@
+---
+title: React + TypeScriptで型安全な開発をするためのTips
+description: ReactとTypeScriptを組み合わせて、より型安全で保守性の高いコードを書くためのテクニックを紹介します
+keywords: React, TypeScript, 型安全, Props
+tags: ["React", "TypeScript", "フロントエンド"]
+---
+
+## はじめに
+
+ReactとTypeScriptを組み合わせることで、型安全性を保ちながら開発を進めることができます。この記事では、実践的なTipsを紹介します。
+
+## 1. Propsの型定義
+
+### 基本的な型定義
+
+```tsx
+interface ButtonProps {
+  label: string
+  onClick: () => void
+  disabled?: boolean
+}
+
+const Button: React.FC<ButtonProps> = ({ label, onClick, disabled = false }) => {
+  return (
+    <button onClick={onClick} disabled={disabled}>
+      {label}
+    </button>
+  )
+}
+```
+
+### childrenを含む型定義
+
+```tsx
+interface CardProps {
+  title: string
+  children: React.ReactNode
+}
+
+const Card: React.FC<CardProps> = ({ title, children }) => {
+  return (
+    <div className="card">
+      <h2>{title}</h2>
+      <div>{children}</div>
+    </div>
+  )
+}
+```
+
+## 2. イベントハンドラーの型
+
+```tsx
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  console.log(e.target.value)
+}
+
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault()
+  // フォーム送信処理
+}
+```
+
+## 3. カスタムフックの型定義
+
+```tsx
+interface UseCounterReturn {
+  count: number
+  increment: () => void
+  decrement: () => void
+  reset: () => void
+}
+
+const useCounter = (initialValue: number = 0): UseCounterReturn => {
+  const [count, setCount] = useState(initialValue)
+
+  const increment = () => setCount(prev => prev + 1)
+  const decrement = () => setCount(prev => prev - 1)
+  const reset = () => setCount(initialValue)
+
+  return { count, increment, decrement, reset }
+}
+```
+
+## まとめ
+
+TypeScriptを活用することで、Reactアプリケーションの型安全性と保守性が大幅に向上します。適切な型定義を心がけることで、バグの早期発見と開発効率の向上が期待できます。

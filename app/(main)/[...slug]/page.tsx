@@ -25,34 +25,38 @@ export default async function Pages({ params }: PageProps) {
   const { frontmatter, content, tocs } = res
 
   return (
-    <div className="flex items-start gap-14">
-      <section className="flex-[3] pt-10">
-        <PageBreadcrumb paths={slug} />
+    <>
+      <div className="flex items-start gap-14">
+        <section className="flex-[3] border border-yellow-500">
+          <PageBreadcrumb paths={slug} />
 
-        <Typography>
-          <h1 className="!mb-2 text-3xl !font-semibold">{frontmatter.title}</h1>
-          <p className="-mt-4 text-sm">{frontmatter.description}</p>
-          <Separator className="my-6" />
-          <section>{content}</section>
-          <Pagination pathname={pathName} />
-        </Typography>
-      </section>
+          <Typography>
+            <h1 className="!mb-2 text-3xl !font-semibold">
+              {frontmatter.title}
+            </h1>
+            <p className="-mt-4 text-sm">{frontmatter.description}</p>
+            <Separator className="my-6" />
+            <section>{content}</section>
+            <Pagination pathname={pathName} />
+          </Typography>
+        </section>
 
-      {Settings.rightbar && (
-        <aside
-          className="toc sticky top-16 hidden h-[94.5vh] min-w-[230px] gap-3 py-8 xl:flex xl:flex-col"
-          aria-label="Table of contents"
-        >
-          {Settings.toc && <Toc tocs={tocs} />}
-          {Settings.feedback && (
-            <Feedback slug={pathName} title={frontmatter.title} />
-          )}
-          {Settings.totop && (
-            <BackToTop className="mt-6 self-start text-sm text-neutral-800 dark:text-neutral-300/85" />
-          )}
-        </aside>
-      )}
-    </div>
+        {Settings.rightbar && (
+          <aside
+            className="toc sticky top-16 hidden h-[94.5vh] min-w-[230px] gap-3 border border-blue-500 py-8 xl:flex xl:flex-col"
+            aria-label="Table of contents"
+          >
+            {Settings.toc && <Toc tocs={tocs} />}
+            {Settings.feedback && (
+              <Feedback slug={pathName} title={frontmatter.title} />
+            )}
+            {Settings.totop && (
+              <BackToTop className="mt-6 self-start text-sm text-neutral-800 dark:text-neutral-300/85" />
+            )}
+          </aside>
+        )}
+      </div>
+    </>
   )
 }
 

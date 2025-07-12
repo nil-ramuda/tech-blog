@@ -12,7 +12,7 @@ import { ModeToggle } from "@/components/navigation/theme-toggle"
 
 export function Navbar() {
   return (
-    <nav className="bg-opacity-5 sticky top-0 z-50 h-16 w-full border-b px-2 backdrop-blur-xl backdrop-filter md:px-4">
+    <nav className="bg-opacity-5 sticky top-0 z-50 h-16 w-full border border-b border-green-500 px-2 backdrop-blur-xl backdrop-filter md:px-4">
       <div className="mx-auto flex h-full items-center justify-between p-1 sm:p-3 md:gap-2">
         <div className="flex items-center gap-5">
           <SheetLeft />
